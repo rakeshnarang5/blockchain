@@ -1,0 +1,100 @@
+what's solidity?
+contract oriented programming language
+
+which blockchain does it target?
+ethereum
+
+what's remix?
+browser based ide for solidity
+
+how to define which solidity version to use?
+pragma solidity ^0.4.0;
+
+how to declare a contract?
+contract MyFirstContract { }
+
+declare a private variable?
+    string private name;
+
+
+declare getter?
+ function getName() returns (string) {
+        return name;
+    }
+
+declare setter?
+function setName(string newName) {
+        name = newName;
+    }
+
+does this operator work in solidity?
+no, it doesn't
+function setName(string newName) {
+        this.name = newName;
+    }
+gives
+browser/myFirstContract.sol:7:22: Warning: This declaration shadows an existing declaration. function setName(string name) { ^---------^ browser/myFirstContract.sol:5:5: The shadowed declaration is here: string private name; ^-----------------^
+
+int vs uint?
+int is signed
+uint is unsigned
+
+declare unsigned int?
+    uint private age;
+
+
+how to inherit a contract?
+contract inheriting_contract is inherited_contract { }
+
+java vs solidity for inheritance?
+java -> extends
+solidity -> is
+
+access modifiers in solidity?
+public
+private
+internal === protected (java)
+
+constructor in solidity?
+function Bank(uint amount) {
+        value = amount;
+    }
+
+inheritance with constructed object?
+contract MyFirstContract is Bank(100) { 
+}
+
+abstract methods in contract?
+in_parent: -
+function loan() returns (bool);
+in_child: -
+implementation
+function loan() returns (bool) {
+return true;
+}
+if not implemented:-
+This contract does not implement all functions and thus cannot be created.
+
+interface?
+interface Regulator {
+function checkValue(uint amount) returns (bool);
+function loan() returns (bool);
+}
+
+implement interface?
+java -> implements
+solidity -> is
+
+how?
+contract Bank is Regulator {
+function checkValue(uint amount) returns (bool) {
+return value >= amount;
+}
+function loan() returns (bool) {
+return value > 0;
+}
+}
+
+
+
+
