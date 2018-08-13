@@ -95,6 +95,83 @@ return value > 0;
 }
 }
 
+why contract level access modification?
+security
+so that only creator of contract can add or remove any value
 
+address variable in solidity?
+pointer to any address on the ethereum blockchain
 
+modifier keyword?
+used to declare a constraint
 
+how to create a constraint that checks for owner's identity?
+modifier ownerFunc {
+		require(owner == msg.sender);
+		_;
+	}
+	
+what does _; signify?
+it's a placeholder for the method code
+if some method used ownerFunc constraint, it will first check the require,
+if that is true, only then rest of the method will be executed
+// it kind of looks like AOP of Spring
+
+can we change the execution sequence of require and method content?
+yes
+
+how?
+modifier ownerFunc {
+_;
+		require(owner == msg.sender);
+	}
+now the method body will execute first and then the condition will be checked
+
+throw in solidity?
+it is used for exception handling
+
+should you use it?
+nopes, it is deprecated in favor of revert, require and assert
+throw might be removed in later versions of solidity
+
+how to apply modifier constraints to methods?
+by adding name of modifier just before opening bracket of the body
+how?
+function deposit (uint amount) ownerFunc {
+        value += amount;
+    }
+now the ownerFunc requirement is added to the deposit method
+
+what happens when from a different account on the eth blockchain we try to deposit or withdraw?
+requirement ownerFunc fails and an exception is thrown
+this way the contract becomes secure
+
+assert?
+logical condition; if false, error thrown
+just like assertEquals() in java
+
+is throw a function?
+nopes, unlike require, assert and revert, throw is an operation and not a function
+
+where is assert generally used?
+for validating the inputs at runtime
+it always consumes gas
+
+require?
+throws exception with revert as opcode
+which means gas cost is reversed
+this is not sure, but as per understand
+impl in metropolis version of solidity
+
+revert?
+it reverts the gas cost incurred during the message
+
+throw gas consumption?
+yes, consumes gas all the time
+
+how to add custom modifiers to methods?
+like this
+function deposit (uint amount) private ownerFunc {
+        value += amount;
+    }
+	it allows of restricts the methods accessible to the inheriting class

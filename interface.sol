@@ -8,16 +8,23 @@ interface Regulator {
 contract Bank is Regulator {
     
     uint private value;
+	address private owner;
     
     function Bank(uint amount) {
         value = amount;
+		owner = msg.sender;
     }
+	
+	modifier ownerFunc {
+		require(owner == msg.sender);
+		_;
+	}
     
-    function deposit (uint amount) {
+    function deposit (uint amount) private ownerFunc {
         value += amount;
     }
     
-    function balance() returns (uint) {
+    function balance() returns (uint) internal ownerFunc {
         return value;
     }
     
@@ -57,4 +64,23 @@ contract MyFirstContract is Bank(100) {
     function getAge() returns (uint) {
         return age;
     }
+}
+
+
+contract TestThrows {
+	function testAssert() {
+		assert(false);
+	}
+	
+	function testRequire() {
+		require(1==2);
+	}
+	
+	function testRevert() {
+		revert();
+	}
+	
+	function testThrow() {
+		throw;
+	}
 }
