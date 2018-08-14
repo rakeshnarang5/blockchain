@@ -160,7 +160,7 @@ it always consumes gas
 require?
 throws exception with revert as opcode
 which means gas cost is reversed
-this is not sure, but as per understand
+this is not sure, but as per understanding
 impl in metropolis version of solidity
 
 revert?
@@ -174,4 +174,4 @@ like this
 function deposit (uint amount) private ownerFunc {
         value += amount;
     }
-	it allows of restricts the methods accessible to the inheriting class
+	it allows or restricts the methods accessible to the inheriting class
