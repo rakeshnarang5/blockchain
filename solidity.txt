@@ -175,3 +175,40 @@ function deposit (uint amount) private ownerFunc {
         value += amount;
     }
 	it allows or restricts the methods accessible to the inheriting class
+	
+how to import a library in solidity?
+with import full path
+import "browser/library.sol";
+
+how to use a contract from a library?
+by extending it in another file
+
+how?
+contract UseLibraries is Libraries { }
+
+how to import from a library on a network?
+import "github.com/willitscale/solidity/library.sol";
+
+keyword to declare a library?
+library
+library IntExtended { }
+
+what's a library?
+it's set of functions that extend something or provide addnl functionality
+   function increment(uint _self) returns (uint) {
+        return _self+1;
+    }
+
+what all data types can be extended with a library?
+all, e.g. uint, string etc.
+
+how to use an extended library?
+    using IntExtended for uint;
+
+another way?
+by passing calling library method as a function
+    function testIncrementPassing(uint _base) returns (uint) {
+        return IntExtended.increment(_base);
+    }
+	
+	
